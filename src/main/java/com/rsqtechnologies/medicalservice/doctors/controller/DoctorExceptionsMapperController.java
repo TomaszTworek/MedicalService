@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ExceptionsMapperController {
+public class DoctorExceptionsMapperController {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Error> handleWrongSpecialization(HttpMessageNotReadableException ex) {

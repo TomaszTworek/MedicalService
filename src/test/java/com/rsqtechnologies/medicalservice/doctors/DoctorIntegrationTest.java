@@ -1,4 +1,4 @@
-package com.rsqtechnologies.medicalservice;
+package com.rsqtechnologies.medicalservice.doctors;
 
 
 import com.rsqtechnologies.medicalservice.doctors.repository.DoctorRepository;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class DoctorControllerIntegrationTest {
+class DoctorIntegrationTest {
 
     @Autowired
     private DoctorRepository doctorRepository;
@@ -53,7 +53,7 @@ class DoctorControllerIntegrationTest {
 
 
     @Test
-    @Sql(value = "classpath:doctor-controller/init-doctors.sql", executionPhase = BEFORE_TEST_METHOD)
+    @Sql(value = "classpath:doctor-controller/init-patients.sql", executionPhase = BEFORE_TEST_METHOD)
     void shouldGetAllDoctors() throws Exception {
         //when then
         this.mockMvc.perform(get("/doctors"))
@@ -66,7 +66,7 @@ class DoctorControllerIntegrationTest {
     }
 
     @Test
-    @Sql(value = "classpath:doctor-controller/init-doctors.sql", executionPhase = BEFORE_TEST_METHOD)
+    @Sql(value = "classpath:doctor-controller/init-patients.sql", executionPhase = BEFORE_TEST_METHOD)
     void shouldUpdateADoctor() throws Exception {
         //given
         final String updateDoctor = createExampleUpdateDoctor();
@@ -85,7 +85,7 @@ class DoctorControllerIntegrationTest {
     }
 
     @Test
-    @Sql(value = "classpath:doctor-controller/init-doctors.sql", executionPhase = BEFORE_TEST_METHOD)
+    @Sql(value = "classpath:doctor-controller/init-patients.sql", executionPhase = BEFORE_TEST_METHOD)
     void shouldDeleteDoctor() throws Exception {
         //when
         this.mockMvc.perform(delete("/doctors/{id}", 1L))
@@ -99,8 +99,8 @@ class DoctorControllerIntegrationTest {
     }
 
     @Test
-    @Sql(value = "classpath:doctor-controller/init-doctors.sql", executionPhase = BEFORE_TEST_METHOD)
-    void shouldReturn404WhenSpecializationIsIncorrect() throws Exception {
+    @Sql(value = "classpath:doctor-controller/init-patients.sql", executionPhase = BEFORE_TEST_METHOD)
+    void shouldReturn400WhenSpecializationIsIncorrect() throws Exception {
         //given
         final String doctor = createDoctorWithWrongSpecialization();
 
@@ -112,8 +112,8 @@ class DoctorControllerIntegrationTest {
     }
 
     @Test
-    @Sql(value = "classpath:doctor-controller/init-doctors.sql", executionPhase = BEFORE_TEST_METHOD)
-    void shouldReturn404WhenThereIsNoDoctorWithGivenId() throws Exception {
+    @Sql(value = "classpath:doctor-controller/init-patients.sql", executionPhase = BEFORE_TEST_METHOD)
+    void shouldReturn400WhenThereIsNoDoctorWithGivenId() throws Exception {
 
         //when then
         this.mockMvc.perform(get("/doctors/{id}", 10L))
