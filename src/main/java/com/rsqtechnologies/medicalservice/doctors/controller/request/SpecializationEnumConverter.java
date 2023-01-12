@@ -7,6 +7,6 @@ public class SpecializationEnumConverter implements Converter<String, Specializa
 
     @Override
     public Specialization convert(String source) {
-        return Specialization.valueOf(source);
+        return Specialization.valueOf(source.toUpperCase());
     }
 }

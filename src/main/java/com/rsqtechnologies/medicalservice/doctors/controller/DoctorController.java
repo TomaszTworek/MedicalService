@@ -24,7 +24,7 @@ public class DoctorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DoctorInfoDto> get(@PathVariable("docId") Long doctorId) {
+    public ResponseEntity<DoctorInfoDto> get(@PathVariable("id") Long doctorId) {
         final DoctorInfoDto doctorInfoDto = doctorService.getBy(doctorId);
         return new ResponseEntity<>(doctorInfoDto, HttpStatus.OK);
     }
@@ -35,12 +35,12 @@ public class DoctorController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable("docId") Long doctorId, DoctorRequest doctorRequest) {
+    public void update(@PathVariable("id") Long doctorId, @RequestBody DoctorRequest doctorRequest) {
         doctorService.update(doctorId, doctorRequest.toDto());
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("docId") Long doctorId) {
+    public void delete(@PathVariable("id") Long doctorId) {
         doctorService.delete(doctorId);
     }
 }
